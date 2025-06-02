@@ -23,6 +23,7 @@ import { KanbanBoard } from "./KanbanBoard";
 import { formatDate } from "./utils/formatDate";
 const statusList = ["All", "Pending", "In Progress", "Completed"];
 const updateStatusOptions = ["Pending", "In Progress", "Completed"];
+const BACKEND_URL = import.meta.env.VITE_SOCKET_URL || "http://localhost:3000";
 const getStatusForAPI = (displayStatus: string): string => {
   switch (displayStatus) {
     case "In Progress":
@@ -143,7 +144,7 @@ const Dashboard = () => {
 
   const fetchNotifications = async (): Promise<void> => {
     try {
-      const res = await fetch("http://localhost:3000/api/notifications", {
+      const res = await fetch(`${BACKEND_URL}/api/notifications`, {
         credentials: "include",
       });
       if (res.ok) {
@@ -161,7 +162,7 @@ const Dashboard = () => {
   } | null> => {
     try {
       setUserLoading(true);
-      const userRes = await fetch("http://localhost:3000/api/auth/user", {
+      const userRes = await fetch(`${BACKEND_URL}/api/auth/user`, {
         credentials: "include",
       });
 
@@ -192,7 +193,7 @@ const Dashboard = () => {
     try {
       setLoading(true);
       const tasksRes = await fetch(
-        `http://localhost:3000/api/tasks?page=${page}&limit=5`,
+        `${BACKEND_URL}/api/tasks?page=${page}&limit=5`,
         {
           credentials: "include",
         }
@@ -217,12 +218,9 @@ const Dashboard = () => {
 
   const fetchAllTasks = async (): Promise<void> => {
     try {
-      const tasksRes = await fetch(
-        `http://localhost:3000/api/tasks?limit=1000`,
-        {
-          credentials: "include",
-        }
-      );
+      const tasksRes = await fetch(`${BACKEND_URL}/api/tasks?limit=1000`, {
+        credentials: "include",
+      });
 
       if (!tasksRes.ok) {
         throw new Error("Failed to fetch all tasks");
@@ -250,7 +248,7 @@ const Dashboard = () => {
 
         try {
           const userRes = await fetch(
-            `http://localhost:3000/api/auth/users/${stringUserId}`,
+            `${BACKEND_URL}/api/auth/users/${stringUserId}`,
             {
               credentials: "include",
             }
@@ -316,17 +314,14 @@ const Dashboard = () => {
         dueDate: updates.dueDate ?? currentTask.dueDate,
       };
 
-      const response = await fetch(
-        `http://localhost:3000/api/tasks/${taskId}`,
-        {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          credentials: "include",
-          body: JSON.stringify(updatedTask),
-        }
-      );
+      const response = await fetch(`${BACKEND_URL}/api/tasks/${taskId}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+        body: JSON.stringify(updatedTask),
+      });
 
       if (response.ok) {
         await Promise.all([fetchTasks(currentPage), fetchAllTasks()]);
@@ -446,7 +441,7 @@ const Dashboard = () => {
 
   const handleLogout = async () => {
     try {
-      await fetch("http://localhost:3000/api/auth/logout", {
+      await fetch(`${BACKEND_URL}/api/auth/logout`, {
         credentials: "include",
       });
       disconnectSocket();
@@ -466,13 +461,10 @@ const Dashboard = () => {
     if (!taskToDelete) return;
 
     try {
-      const res = await fetch(
-        `http://localhost:3000/api/tasks/${taskToDelete}`,
-        {
-          method: "DELETE",
-          credentials: "include",
-        }
-      );
+      const res = await fetch(`${BACKEND_URL}/api/tasks/${taskToDelete}`, {
+        method: "DELETE",
+        credentials: "include",
+      });
 
       if (res.ok) {
         setShowDeleteModal(false);

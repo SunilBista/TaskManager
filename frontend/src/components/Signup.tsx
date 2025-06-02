@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+const BACKEND_URL = import.meta.env.VITE_SOCKET_URL || "http://localhost:3000";
 const signupSchema = z.object({
   username: z.string(),
   email: z.string().min(1, "Email is required").email("Invalid email adress"),
@@ -26,7 +27,7 @@ const Signup = () => {
   const handleSignup = async (data: SignupFormInputs) => {
     const { username = "", email = "", password = "" } = data;
     try {
-      const res = await fetch("http://localhost:3000/api/auth/signup", {
+      const res = await fetch(`${BACKEND_URL}/api/auth/signup`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
