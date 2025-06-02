@@ -5,6 +5,7 @@ interface StatusCodes {
   unauthorized: number;
   forbidden: number;
   notFound: number;
+  conflict: number;
   internalServerError: number;
   serviceUnavailable: number;
 }
@@ -16,6 +17,7 @@ const statusCodes: StatusCodes = {
   unauthorized: 401,
   forbidden: 403,
   notFound: 404,
+  conflict: 409,
   internalServerError: 500,
   serviceUnavailable: 503,
 };
@@ -70,6 +72,10 @@ const responseService = {
 
   notFoundError(message: string, error: unknown = "Not Found"): ResponseData {
     return this.error(message, error, statusCodes.notFound);
+  },
+
+  conflictError(message: string, error: unknown = "Conflict"): ResponseData {
+    return this.error(message, error, this.statusCodes.conflict);
   },
 
   internalServerError(
