@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "ES6",
+    "target": "es6",
     "module": "commonjs",
     "esModuleInterop": true,
     "skipLibCheck": true,
@@ -11,6 +11,6 @@
     "noImplicitAny": false,
     "types": ["node", "jest", "supertest"]
   },
-  "include": ["src/**/*.ts", "index.ts"],
+  "include": ["src/**/*.ts", "index.ts", "src/test-socket.js"],
   "exclude": ["node_modules"]
 }
