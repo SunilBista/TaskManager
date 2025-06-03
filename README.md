@@ -1,4 +1,4 @@
-# TaskManager# TaskTime 📋
+# TaskTime 📋
 
 **Your team's time, mastered.**
 
