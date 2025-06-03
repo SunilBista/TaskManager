@@ -128,12 +128,7 @@ export const userLogin = async (req: Request, res: Response): Promise<void> => {
 
     const token = createWebToken(user._id.toString());
 
-    res.cookie("token", token, {
-      maxAge: maxAge * 1000,
-      httpOnly: true,
-      secure: true,
-      sameSite: "none",
-    });
+    res.cookie("token", token, { maxAge: maxAge * 1000, httpOnly: true });
 
     res.status(200).json(
       responseService.success(
@@ -179,8 +174,6 @@ export const userSignup = async (
     res.cookie("token", token, {
       httpOnly: true,
       maxAge: maxAge * 1000,
-      secure: true,
-      sameSite: "none",
     });
 
     res.status(201).json(
