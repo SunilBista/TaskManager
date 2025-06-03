@@ -30,7 +30,7 @@ TaskTime is a modern task management application that brings clarity to your wor
 
    ```bash
    git clone https://github.com/SunilBista/TaskManager.git
-   cd tasktime
+   cd TaskManager
    ```
 
 2. **Install backend dependencies**
