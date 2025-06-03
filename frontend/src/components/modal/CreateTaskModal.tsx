@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { Button } from "../../components/ui/button";
-const BACKEND_URL = import.meta.env.VITE_SOCKET_URL || "http://localhost:3000";
+import { checkMode } from "../utils/checkMode";
+
+const BACKEND_URL = checkMode();
 interface CreateTaskModalProps {
   isOpen: boolean;
   onClose: () => void;

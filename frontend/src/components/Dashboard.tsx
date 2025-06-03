@@ -21,9 +21,11 @@ import { CreateTaskModal } from "./modal/CreateTaskModal";
 import { EditTaskModal } from "./modal/EditTaskModal";
 import { KanbanBoard } from "./KanbanBoard";
 import { formatDate } from "./utils/formatDate";
+import { checkMode } from "./utils/checkMode";
 const statusList = ["All", "Pending", "In Progress", "Completed"];
 const updateStatusOptions = ["Pending", "In Progress", "Completed"];
-const BACKEND_URL = import.meta.env.VITE_SOCKET_URL || "http://localhost:3000";
+
+const BACKEND_URL = checkMode();
 const getStatusForAPI = (displayStatus: string): string => {
   switch (displayStatus) {
     case "In Progress":
