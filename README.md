@@ -29,7 +29,7 @@ TaskTime is a modern task management application that brings clarity to your wor
 1. **Clone the repository**
 
    ```bash
-   git clone https://github.com/yourusername/tasktime.git
+   git clone https://github.com/SunilBista/TaskManager.git
    cd tasktime
    ```
 
