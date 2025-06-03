@@ -444,13 +444,13 @@ const Dashboard = () => {
   const handleLogout = async () => {
     try {
       await fetch(`${BACKEND_URL}/api/auth/logout`, {
+        method: "POST",
         credentials: "include",
       });
       disconnectSocket();
       navigate("/login");
     } catch (error) {
       console.error("Logout error:", error);
-      navigate("/login");
     }
   };
 

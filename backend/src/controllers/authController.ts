@@ -29,7 +29,21 @@ const createWebToken = (id: string): string => {
 };
 
 export const userLogout = (req: Request, res: Response): void => {
-  res.send("logout");
+  try {
+    res.clearCookie("token", { path: "/" });
+    res
+      .status(200)
+      .json(
+        responseService.success(
+          "Logout Successful",
+          responseService.statusCodes.ok
+        )
+      );
+  } catch (error) {
+    res
+      .status(500)
+      .json(responseService.internalServerError("Logout failed", error));
+  }
 };
 
 export const getUser = async (req: Request, res: Response): Promise<void> => {
