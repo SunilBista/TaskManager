@@ -449,7 +449,7 @@ const Dashboard = () => {
   return (
     <div className="min-h-screen bg-gray-100">
       <header className="sticky top-0 z-50 w-full bg-blue-800 text-white p-4 flex justify-between items-center shadow">
-        <h1 className="text-xl md:text-2xl font-bold">⌘ TaskTime</h1>
+        <h1 className="text-xl md:text-2xl font-bold">TaskTime</h1>
         <div className="flex items-center gap-4">
           <div className="relative">
             <div

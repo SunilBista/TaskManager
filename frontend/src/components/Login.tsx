@@ -49,7 +49,7 @@ const Login = () => {
     <div className="flex flex-col md:flex-row min-h-screen">
       <div className="w-full md:w-1/2 bg-zinc-900 text-white flex flex-col justify-between p-6 md:p-10">
         <div className="text-xl font-semibold flex items-center gap-2">
-          ⌘ TaskTime
+          TaskTime
         </div>
         <div className="flex flex-col justify-center flex-grow space-y-10 mt-10">
           <div className="max-w-md">
